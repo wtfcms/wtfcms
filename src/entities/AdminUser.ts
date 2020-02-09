@@ -1,11 +1,10 @@
-import { IsEmail } from 'class-validator'
+import { IsEmail } from 'class-validator';
 import { Entity, Property } from 'mikro-orm';
 
 import { BaseEntity } from './BaseEntity';
 
 @Entity()
 export class AdminUser extends BaseEntity {
-
   // 昵称
   @Property()
   name: string;
@@ -13,7 +12,7 @@ export class AdminUser extends BaseEntity {
   // 用户名
   @Property()
   username: string;
-  
+
   // 密码
   @Property()
   password: string;
@@ -24,7 +23,7 @@ export class AdminUser extends BaseEntity {
   email: string;
 
   // 手机号码
-  @Property({length: 11})
+  @Property({ length: 11 })
   phone: string;
 
   // 备注
@@ -34,7 +33,7 @@ export class AdminUser extends BaseEntity {
   // 头像
   @Property()
   avatar: string;
-  
+
   // LOGO
   @Property()
   logo: string;
@@ -44,5 +43,4 @@ export class AdminUser extends BaseEntity {
     // this.title = name;
     // this.email = email;
   }
-
 }

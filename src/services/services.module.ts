@@ -3,15 +3,15 @@ import { MikroOrmModule } from 'nestjs-mikro-orm';
 
 import { AdminUserService } from './admin-user/admin-user.service';
 
-import { AdminUser } from '../entities'
+import { AdminUser } from '../entities';
 
 @Module({
   imports: [
     MikroOrmModule.forFeature({
-      entities: [AdminUser]
+      entities: [AdminUser],
     }),
   ],
   providers: [AdminUserService],
-  exports: [AdminUserService]
+  exports: [AdminUserService],
 })
-export class ServicesModule { }
+export class ServicesModule {}

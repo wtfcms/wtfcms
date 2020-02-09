@@ -6,17 +6,17 @@ import * as path from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  
+
   app.useStaticAssets(path.join(__dirname, '..', 'public'));
   // see https://github.com/nestjs/nest/issues/2157
   // app.setBaseViewsDir('views');
   // app.setViewEngine('nunjucks');
-  nunjucks.configure("views", {
+  nunjucks.configure('views', {
     autoescape: true,
     express: app,
-    watch: true
+    watch: true,
   });
-  
+
   await app.listen(3000);
 }
 bootstrap();

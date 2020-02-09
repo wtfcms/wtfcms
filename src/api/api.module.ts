@@ -4,10 +4,8 @@ import { ApiService } from './api.service';
 import { ServicesModule } from '../services/services.module';
 
 @Module({
-  imports: [
-    ServicesModule
-  ],
+  imports: [ServicesModule],
   controllers: [ApiController],
-  providers: [ApiService]
+  providers: [ApiService],
 })
 export class ApiModule {}

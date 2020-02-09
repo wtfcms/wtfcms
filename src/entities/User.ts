@@ -3,10 +3,9 @@ import { BaseEntity } from './';
 
 @Entity()
 export class User extends BaseEntity {
-
-  // 判断用户是否有效  
+  // 判断用户是否有效
   @Property({
-    default: true
+    default: true,
   })
   enable: boolean;
 
