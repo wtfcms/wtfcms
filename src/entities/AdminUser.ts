@@ -1,7 +1,14 @@
 import { IsEmail } from 'class-validator';
-import { Entity, Property } from 'mikro-orm';
+import {
+  Entity,
+  Property,
+  OneToMany,
+  OneToOne,
+  Collection,
+  Cascade,
+} from 'mikro-orm';
 
-import { BaseEntity } from './BaseEntity';
+import { BaseEntity, AdminGroup } from './';
 
 @Entity()
 export class AdminUser extends BaseEntity {
@@ -38,9 +45,15 @@ export class AdminUser extends BaseEntity {
   @Property()
   logo: string;
 
+  @Property()
+  enable: boolean = true;
+
+  @Property()
+  group: string;
+
   constructor(name: string, email: string) {
     super();
-    // this.title = name;
-    // this.email = email;
+    this.name = name;
+    this.email = email;
   }
 }

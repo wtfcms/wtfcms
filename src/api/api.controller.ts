@@ -1,33 +1,40 @@
-import { Controller, Post, Body } from '@nestjs/common';
-import { AdminUserService } from 'src/services';
-import { isEmpty } from 'lodash';
+import { Controller, Post, Body, HttpException, ForbiddenException } from '@nestjs/common';
+import { AdminUserService, AdminGroupService } from '../services';
 
 @Controller('api')
 export class ApiController {
-  constructor(private readonly adminUserService: AdminUserService) {}
+  constructor(
+    private readonly adminUserService: AdminUserService,
+    private readonly adminGroupService: AdminGroupService,
+  ) {}
 
-  @Post('admin/doLogin')
+  @Post('token')
   async doLogin(@Body() body) {
-    console.log(
-      isEmpty({
-        name: 1,
-      }),
-    );
-    console.log(body);
     const { username, password } = body;
 
-    const user = await this.adminUserService.findOne({
+    const adminUser = await this.adminUserService.findOne({
       username,
-      password,
-    });
+      password
+    })
 
-    if (user) {
+    if (!adminUser) {
+      throw new ForbiddenException('用户不可用');
     }
-    // console.log(result)
-    // return result;
 
-    // if (!user.enable) {
+    if (!adminUser.enable) {
+      throw new ForbiddenException('用户不可用');
+    }
 
-    // }
+    const adminGroup = await this.adminGroupService.findOne({
+      _id: adminUser.group
+    })
+
+    if (!adminGroup) {
+      throw new ForbiddenException('用户不可用');
+    }
+
+    if (!adminGroup.enable) {
+      throw new ForbiddenException('用户不可用');
+    }
   }
 }
