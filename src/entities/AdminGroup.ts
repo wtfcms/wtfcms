@@ -15,5 +15,5 @@ export class AdminGroup extends BaseEntity {
 
   // 备注
   @Property()
-  comments: string;
+  comments: string = '';
 }

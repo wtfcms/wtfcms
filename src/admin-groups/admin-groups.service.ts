@@ -1,4 +1,4 @@
-import { Injectable, Body } from '@nestjs/common';
+import { Injectable, Body, BadRequestException } from '@nestjs/common';
 import { AdminGroup } from '../entities';
 import { InjectRepository } from 'nestjs-mikro-orm';
 import { EntityRepository, wrap } from 'mikro-orm';
@@ -22,11 +22,15 @@ export class AdminGroupsService {
   }
 
   async delete(params) {
-    console.log(params);
     const result = await this.adminGroupRepository.remove(params);
-    // const result1= await this.adminGroupRepository.flush();
-    // this
-    console.log('result', result);
-    // console.log('result1', result1)
+    if (!result) {
+      throw new BadRequestException('未找到ID');
+    }
+
+    return result;
+  }
+
+  async findOne(params): Promise<AdminGroup> {
+    return await this.adminGroupRepository.findOne(params);
   }
 }
