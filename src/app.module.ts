@@ -17,7 +17,7 @@ import { AdminGroupsModule } from './admin-groups/admin-groups.module';
     ConfigModule.forRoot(),
     MikroOrmModule.forRoot({
       type: 'mongo',
-      clientUrl: (new ConfigService()).get<string>('DB_URL'),
+      clientUrl: new ConfigService().get<string>('DB_URL'),
       dbName: 'doracms2',
       entities: entities.entityAll(),
       entitiesDirsTs: ['src/entities'],

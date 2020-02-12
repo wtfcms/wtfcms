@@ -1,4 +1,11 @@
-import { Controller, Post, Body, HttpException, ForbiddenException, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  HttpException,
+  ForbiddenException,
+  Get,
+} from '@nestjs/common';
 import { AdminUserService, AdminGroupService } from '../services';
 
 @Controller('api')
@@ -14,8 +21,8 @@ export class ApiController {
 
     const adminUser = await this.adminUserService.findOne({
       username,
-      password
-    })
+      password,
+    });
 
     if (!adminUser) {
       throw new ForbiddenException('用户不可用');
@@ -26,8 +33,8 @@ export class ApiController {
     }
 
     const adminGroup = await this.adminGroupService.findOne({
-      _id: adminUser.group
-    })
+      _id: adminUser.group,
+    });
 
     if (!adminGroup) {
       throw new ForbiddenException('用户不可用');
@@ -39,7 +46,5 @@ export class ApiController {
   }
 
   @Get('users')
-  async find() {
-    
-  }
+  async find() {}
 }

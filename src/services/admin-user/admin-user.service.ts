@@ -19,8 +19,8 @@ export class AdminUserService {
 
   async findOne(params = {}): Promise<AdminUser> {
     return await this.adminUserRepository.findOne({
-      where: params
-    })
+      where: params,
+    });
   }
 
   // async findAll(params = {}): Promise<AdminUser[]> {
@@ -28,5 +28,4 @@ export class AdminUserService {
   //     where: params
   //   })
   // }
-
 }

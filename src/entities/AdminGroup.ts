@@ -12,9 +12,8 @@ export class AdminGroup extends BaseEntity {
   // 组状态
   @Property()
   enable: boolean = true;
-  
+
   // 备注
   @Property()
   comments: string;
-
 }

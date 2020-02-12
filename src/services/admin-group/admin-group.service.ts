@@ -10,9 +10,9 @@ export class AdminGroupService {
     private readonly adminGroupRepository: EntityRepository<AdminGroup>,
   ) {}
 
-  async findOne(params = {}):Promise<AdminGroup> {
+  async findOne(params = {}): Promise<AdminGroup> {
     return await this.adminGroupRepository.findOne({
-      where: params
-    })
+      where: params,
+    });
   }
 }

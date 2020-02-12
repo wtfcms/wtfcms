@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { AdminUserService } from '../services'
+import { AdminUserService } from '../services';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly adminUserService: AdminUserService,
-    private readonly jwtService: JwtService
+    private readonly jwtService: JwtService,
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {

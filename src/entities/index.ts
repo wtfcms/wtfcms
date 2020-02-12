@@ -13,7 +13,7 @@ export function entityAll() {
 
 export function entityInclude(params: string[] = []) {
   const ret = [];
-  
+
   for (let item of Object.keys(this)) {
     if (params.includes(item)) {
       ret.push(this[item]);
