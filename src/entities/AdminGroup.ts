@@ -5,29 +5,16 @@ import { BaseEntity, AdminUser } from './';
 
 @Entity()
 export class AdminGroup extends BaseEntity {
-  // 用户在名称
+  // 组名称
   @Property()
   name: string;
 
-  // 权限
+  // 组状态
   @Property()
-  power: [
-    {
-      type: string;
-    },
-  ];
-
-  // 日期
-  @Property()
-  date = Date.now;
-
+  enable: boolean = true;
+  
   // 备注
   @Property()
   comments: string;
 
-  @ManyToOne()
-  adminUser: AdminUser;
-
-  @Property()
-  enable: boolean = true;
 }

@@ -8,6 +8,9 @@ import { ApiModule } from './api/api.module';
 import { ServicesModule } from './services/services.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
+import { AdminUsersModule } from './admin-users/admin-users.module';
+import { AdminGroupsModule } from './admin-groups/admin-groups.module';
 
 @Module({
   imports: [
@@ -25,6 +28,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     ApiModule,
     ServicesModule,
     AuthModule,
+    UsersModule,
+    AdminUsersModule,
+    AdminGroupsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

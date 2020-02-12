@@ -1,4 +1,4 @@
-import { Controller, Post, Body, HttpException, ForbiddenException } from '@nestjs/common';
+import { Controller, Post, Body, HttpException, ForbiddenException, Get } from '@nestjs/common';
 import { AdminUserService, AdminGroupService } from '../services';
 
 @Controller('api')
@@ -36,5 +36,10 @@ export class ApiController {
     if (!adminGroup.enable) {
       throw new ForbiddenException('用户不可用');
     }
+  }
+
+  @Get('users')
+  async find() {
+    
   }
 }
