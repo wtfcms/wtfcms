@@ -32,6 +32,7 @@ export function entityExclude(params: string[] = []) {
 
 export * from './BaseEntity';
 
+export * from './User';
 export * from './AdminUser';
 export * from './AdminGroup';
 export * from './AdminResource';

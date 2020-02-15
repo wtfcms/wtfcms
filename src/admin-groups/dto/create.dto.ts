@@ -1,32 +1,24 @@
 import {
   IsNotEmpty,
-  IsOptional,
-  IsString,
-  MinLength,
-  MaxLength,
+  IsOptional
 } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 class CommonDto {
-  @IsNotEmpty()
-  @IsString()
-  @MinLength(24)
-  @MaxLength(24)
-  id: string;
-}
-
-export class CreateAdminGroupDto {
+  @ApiProperty()
   @IsNotEmpty()
   name: string;
 
+  @ApiProperty()
   @IsOptional()
   enable: boolean;
 
+  @ApiProperty()
   @IsOptional()
   comments: string;
 }
 
-export class UpdateAdminGroupDto extends CreateAdminGroupDto {}
+export class CreateAdminGroupDto extends CommonDto {
+}
 
-export class DeleteAdminGroupDto extends CommonDto {}
-
-export class FindOneAdminGroupDto extends CommonDto {}
+export class updateAdminGroupDto extends CommonDto { }

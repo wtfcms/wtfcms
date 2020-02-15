@@ -4,6 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 import { ValidationPipe } from '@nestjs/common';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -18,11 +19,21 @@ async function bootstrap() {
     watch: true,
   });
 
+  const options = new DocumentBuilder()
+    .setTitle('Cats example')
+    .setDescription('The cats API description')
+    .setVersion('1.0')
+    .addTag('cats')
+    .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('apiapi', app, document);
+
   // see https://docs.nestjs.com/techniques/validation
   app.useGlobalPipes(
     new ValidationPipe({
       forbidNonWhitelisted: true,
       whitelist: true,
+      forbidUnknownValues: true
     }),
   );
 
