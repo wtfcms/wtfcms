@@ -3,7 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MikroOrmModule } from 'nestjs-mikro-orm';
 import * as entities from './entities';
-import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
@@ -22,7 +21,6 @@ import { AdminGroupsModule } from './admin-groups/admin-groups.module';
       entitiesDirs: ['dist/entities'],
       // baseDir: __dirname
     }),
-    AdminModule,
     AuthModule,
     UsersModule,
     AdminUsersModule,
