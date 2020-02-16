@@ -8,7 +8,7 @@ export class AdminGroupsService {
   constructor(
     @InjectRepository(AdminGroup)
     private readonly adminGroupRepository: EntityRepository<AdminGroup>,
-  ) {}
+  ) { }
 
   async findAll(): Promise<AdminGroup[]> {
     return await this.adminGroupRepository.findAll();
@@ -36,6 +36,9 @@ export class AdminGroupsService {
 
   async update(params): Promise<AdminGroup> {
     const adminGroup = await this.adminGroupRepository.findOne(params);
+    if (!adminGroup) {
+      throw new BadRequestException()
+    }
     wrap(adminGroup).assign(params);
     await this.adminGroupRepository.flush();
     return adminGroup;
