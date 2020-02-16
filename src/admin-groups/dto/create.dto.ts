@@ -1,7 +1,4 @@
-import {
-  IsNotEmpty,
-  IsOptional
-} from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 class CommonDto {
@@ -18,7 +15,6 @@ class CommonDto {
   comments: string;
 }
 
-export class CreateAdminGroupDto extends CommonDto {
-}
+export class CreateAdminGroupDto extends CommonDto {}
 
-export class updateAdminGroupDto extends CommonDto { }
+export class updateAdminGroupDto extends CommonDto {}

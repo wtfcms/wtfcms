@@ -15,7 +15,7 @@ export class AdminUsersService {
   }
 
   async findOne(params = {}): Promise<AdminUser> {
-    return await this.adminUserRepository.findOne(params)
+    return await this.adminUserRepository.findOne(params);
   }
 
   async create(params): Promise<any> {

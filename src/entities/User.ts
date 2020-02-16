@@ -7,7 +7,7 @@ export class User extends BaseEntity {
   // 昵称
   @Property()
   name: string;
-  
+
   // 用户名
   @Property()
   username: string;

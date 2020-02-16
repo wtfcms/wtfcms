@@ -15,7 +15,7 @@ export class CustomStrategy extends PassportStrategy(Strategy) {
    * https://github.com/mbell8903/passport-custom
    */
   async validate(req): Promise<any> {
-    console.log(req.body)
+    console.log(req.body);
     // const user = await this.authService.validateUser(username, password);
     // if (!user) {
     //   throw new UnauthorizedException();

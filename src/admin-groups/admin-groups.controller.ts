@@ -10,9 +10,7 @@ import {
   Patch,
 } from '@nestjs/common';
 import { AdminGroupsService } from './admin-groups.service';
-import {
-  CreateAdminGroupDto, updateAdminGroupDto,
-} from './dto/create.dto';
+import { CreateAdminGroupDto, updateAdminGroupDto } from './dto/create.dto';
 import { IdDto } from 'src/shared/dto';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -43,6 +41,6 @@ export class AdminGroupsController {
 
   @Patch(':id')
   async update(@Param() params: IdDto, @Body() body: updateAdminGroupDto) {
-    return await this.adminGroupsService.update(body)
+    return await this.adminGroupsService.update(body);
   }
 }

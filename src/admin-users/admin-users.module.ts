@@ -13,6 +13,6 @@ import * as entities from '../entities';
   ],
   controllers: [AdminUsersController],
   providers: [AdminUsersService],
-  exports: [AdminUsersService]
+  exports: [AdminUsersService],
 })
 export class AdminUsersModule {}

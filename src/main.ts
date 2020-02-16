@@ -33,7 +33,7 @@ async function bootstrap() {
     new ValidationPipe({
       forbidNonWhitelisted: true,
       whitelist: true,
-      forbidUnknownValues: true
+      forbidUnknownValues: true,
     }),
   );
 

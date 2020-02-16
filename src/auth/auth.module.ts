@@ -5,8 +5,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { jwtConstants } from './constants';
 
-import { AdminUsersModule } from '../admin-users/admin-users.module'
-import { UsersModule } from '../users/users.module'
+import { AdminUsersModule } from '../admin-users/admin-users.module';
+import { UsersModule } from '../users/users.module';
 import { LocalStrategy } from './local.strategy';
 import { JwtStrategy } from './jwt.strategy';
 import { CustomStrategy } from './custom.strategy';
@@ -24,4 +24,4 @@ import { CustomStrategy } from './custom.strategy';
   providers: [AuthService, LocalStrategy, JwtStrategy, CustomStrategy],
   controllers: [AuthController],
 })
-export class AuthModule { }
+export class AuthModule {}
