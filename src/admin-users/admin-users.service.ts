@@ -1,7 +1,7 @@
 import { Injectable, Get } from '@nestjs/common';
 import { AdminUser } from '../entities';
 import { InjectRepository } from 'nestjs-mikro-orm';
-import { EntityRepository } from 'mikro-orm';
+import { EntityRepository, wrap } from 'mikro-orm';
 
 @Injectable()
 export class AdminUsersService {
@@ -18,8 +18,10 @@ export class AdminUsersService {
     return await this.adminUserRepository.findOne(params);
   }
 
-  async create(params): Promise<any> {
-    const adminUser = this.adminUserRepository.create(params);
-    return await this.adminUserRepository.persistAndFlush(adminUser);
+  async create(params): Promise<AdminUser> {
+    const adminUser = new AdminUser();
+    wrap(adminUser).assign(params);
+    await this.adminUserRepository.persistAndFlush(adminUser);
+    return adminUser;
   }
 }

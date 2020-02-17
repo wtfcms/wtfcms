@@ -50,10 +50,4 @@ export class AdminUser extends BaseEntity {
 
   @Property()
   group: string;
-
-  constructor(name: string, email: string) {
-    super();
-    this.name = name;
-    this.email = email;
-  }
 }
