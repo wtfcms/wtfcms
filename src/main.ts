@@ -5,6 +5,7 @@ import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { ValidationOptions } from './shared/config';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -28,14 +29,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('apiapi', app, document);
 
-  // see https://docs.nestjs.com/techniques/validation
-  app.useGlobalPipes(
-    new ValidationPipe({
-      forbidNonWhitelisted: true,
-      whitelist: true,
-      forbidUnknownValues: true,
-    }),
-  );
+  app.useGlobalPipes(new ValidationPipe(ValidationOptions));
 
   await app.listen(3000);
 }

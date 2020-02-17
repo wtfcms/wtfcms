@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { AdminUsersService } from '../admin-users/admin-users.service';
 import { AdminGroupsService } from '../admin-groups/admin-groups.service';
+import { User, AdminUser } from 'src/entities';
 
 @Injectable()
 export class AuthService {
@@ -12,9 +13,23 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOne(username);
-    if (user && user.password === pass) {
+  async validateUser({ username, password, type }): Promise<any> {
+    let user: User | AdminUser;
+    if (type === 1) {
+      user = await this.usersService.findOne({
+        username,
+        password,
+      });
+    }
+
+    if (type === 2) {
+      user = await this.adminUserService.findOne({
+        username,
+        password,
+      });
+    }
+
+    if (user && user.password === password) {
       const { password, ...result } = user;
       return result;
     }

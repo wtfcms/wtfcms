@@ -11,7 +11,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AdminGroupsService } from './admin-groups.service';
-import { CreateAdminGroupDto, updateAdminGroupDto } from './dto/create.dto';
+import { CreateAdminGroupDto, updateAdminGroupDto } from './dto';
 import { IdDto } from 'src/shared/dto';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';

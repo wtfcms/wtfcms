@@ -11,6 +11,6 @@ export class UsersService {
   ) {}
 
   async findOne(params = {}): Promise<User> {
-    return this.userRepository.findOne(params);
+    return await this.userRepository.findOne(params);
   }
 }

@@ -7,9 +7,8 @@ import { jwtConstants } from './constants';
 
 import { AdminUsersModule } from '../admin-users/admin-users.module';
 import { UsersModule } from '../users/users.module';
-import { LocalStrategy } from './local.strategy';
 import { JwtStrategy } from './jwt.strategy';
-import { CustomStrategy } from './custom.strategy';
+import { LoginStrategy } from './login.strategy';
 
 @Module({
   imports: [
@@ -21,7 +20,7 @@ import { CustomStrategy } from './custom.strategy';
       signOptions: { expiresIn: '3600s' },
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, CustomStrategy],
+  providers: [AuthService, JwtStrategy, LoginStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}
