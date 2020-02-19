@@ -19,6 +19,7 @@ import { AdminGroupsModule } from './admin-groups/admin-groups.module';
       entities: entities.entityAll(),
       entitiesDirsTs: ['src/entities'],
       entitiesDirs: ['dist/entities'],
+      debug: true,
       // baseDir: __dirname
     }),
     AuthModule,

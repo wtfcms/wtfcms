@@ -30,7 +30,7 @@ async function bootstrap() {
   SwaggerModule.setup('apiapi', app, document);
 
   app.useGlobalPipes(new ValidationPipe(ValidationOptions));
-
+  app.enableCors();
   await app.listen(3000);
 }
 bootstrap();
