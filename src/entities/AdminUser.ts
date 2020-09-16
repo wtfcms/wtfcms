@@ -6,7 +6,8 @@ import {
   OneToOne,
   Collection,
   Cascade,
-} from 'mikro-orm';
+  ManyToOne,
+} from '@mikro-orm/core';
 
 import { BaseEntity, AdminGroup } from './';
 
@@ -48,6 +49,7 @@ export class AdminUser extends BaseEntity {
   @Property()
   enable: boolean = true;
 
-  @Property()
-  group: string;
+  // @Property()
+  @ManyToOne(() => AdminGroup)
+  group: AdminGroup;
 }

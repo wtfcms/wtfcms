@@ -1,13 +1,15 @@
 import { Injectable, Get } from '@nestjs/common';
-import { AdminUser } from '../entities';
-import { InjectRepository } from 'nestjs-mikro-orm';
-import { EntityRepository, wrap } from 'mikro-orm';
+import { AdminGroup, AdminUser } from '../entities';
+import { InjectRepository } from '@mikro-orm/nestjs';
+import { EntityRepository, wrap } from '@mikro-orm/core';
 
 @Injectable()
 export class AdminUsersService {
   constructor(
     @InjectRepository(AdminUser)
     private readonly adminUserRepository: EntityRepository<AdminUser>,
+    @InjectRepository(AdminGroup)
+    private readonly adminGroupRepository: EntityRepository<AdminGroup>,
   ) {}
 
   async find(): Promise<AdminUser[]> {
@@ -19,8 +21,11 @@ export class AdminUsersService {
   }
 
   async create(params): Promise<AdminUser> {
+    const adminGroup = await this.adminGroupRepository.findOne({
+      id: params.group,
+    });
     const adminUser = new AdminUser();
-    wrap(adminUser).assign(params);
+    adminUser.group = adminGroup;
     await this.adminUserRepository.persistAndFlush(adminUser);
     return adminUser;
   }

@@ -1,0 +1,12 @@
+<html>
+<head>
+</head>
+<body>test</body>
+</html>
+
+
+获取 图片验证码"/api/getImgCode?" + Math.random();
+
+userName,password,imageCode
+调用 /api/admin/doLogin 接口，如果data.status === 200 ，window.location.href 到 /admin/dashboard，否者重新获验证码
+

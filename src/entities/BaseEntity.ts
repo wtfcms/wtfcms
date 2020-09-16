@@ -1,14 +1,9 @@
-import {
-  MongoEntity,
-  PrimaryKey,
-  Property,
-  SerializedPrimaryKey,
-} from 'mikro-orm';
-import { ObjectID } from 'mongodb';
+import { PrimaryKey, Property, SerializedPrimaryKey } from '@mikro-orm/core';
+import { ObjectId } from '@mikro-orm/mongodb';
 
-export abstract class BaseEntity implements MongoEntity<BaseEntity> {
+export class BaseEntity {
   @PrimaryKey()
-  _id!: ObjectID;
+  _id!: ObjectId;
 
   @SerializedPrimaryKey()
   id!: string;
@@ -18,4 +13,7 @@ export abstract class BaseEntity implements MongoEntity<BaseEntity> {
 
   @Property({ onUpdate: () => new Date() })
   updatedAt = new Date();
+
+  @Property()
+  deletedAt: Date;
 }

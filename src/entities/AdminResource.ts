@@ -1,27 +1,46 @@
 import { IsEmail } from 'class-validator';
-import { Entity, Property } from 'mikro-orm';
+import { Entity, Property } from '@mikro-orm/core';
 
 import { BaseEntity } from './BaseEntity';
 
 @Entity()
 export class AdminResource extends BaseEntity {
-  // 用户在名称
   @Property()
-  name: string;
+  label: string;
 
-  // 权限
+  /**
+   * 0 普通菜单
+   * 1 功能菜单
+   */
   @Property()
-  power: [
-    {
-      type: string;
-    },
-  ];
+  type: string;
 
-  // 日期
+  // 路由路径
   @Property()
-  date = Date.now;
+  routePath: string;
 
-  // 备注
+  // icon 图标样式
   @Property()
-  comments: string;
+  icon: string;
+
+  // 模板路径
+  @Property()
+  componentPath: string;
+
+  // 资源路径
+  @Property()
+  api: string;
+
+  @Property()
+  parentId: string;
+
+  // 是否由插件安装而来
+  @Property({ default: false })
+  isExt: boolean = false;
+
+  @Property({ default: true })
+  enable: boolean = true;
+
+  @Property({ default: 0 })
+  sortId: number = 0;
 }

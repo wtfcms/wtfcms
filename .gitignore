@@ -37,3 +37,4 @@ lerna-debug.log*
 /public
 /temp
 .env
+/src/backstage/build/node_modules

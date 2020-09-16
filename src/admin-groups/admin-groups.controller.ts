@@ -9,6 +9,7 @@ import {
   Param,
   Patch,
   UseGuards,
+  Put,
 } from '@nestjs/common';
 import { AdminGroupsService } from './admin-groups.service';
 import { CreateAdminGroupDto, updateAdminGroupDto } from './dto';
@@ -21,33 +22,32 @@ import { AuthGuard } from '@nestjs/passport';
 export class AdminGroupsController {
   constructor(private readonly adminGroupsService: AdminGroupsService) {}
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Get()
   async findAll() {
     return await this.adminGroupsService.findAll();
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Post()
   async create(@Body() body: CreateAdminGroupDto) {
     return await this.adminGroupsService.create(body);
   }
 
-  @UseGuards(AuthGuard('jwt'))
-  @Delete(':id')
-  async delete(@Param() params: IdDto) {
-    return await this.adminGroupsService.delete(params);
-  }
-
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   async findOne(@Param() params: IdDto) {
     return await this.adminGroupsService.findOne(params);
   }
 
-  @UseGuards(AuthGuard('jwt'))
-  @Patch(':id')
-  async update(@Param() params: IdDto, @Body() body: updateAdminGroupDto) {
-    return await this.adminGroupsService.update(body);
+  // @UseGuards(AuthGuard('jwt'))
+  @Put(':id')
+  async update(@Param('id') id, @Body() body) {
+    return await this.adminGroupsService.update(id, body);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id) {
+    return await this.adminGroupsService.delete(id);
   }
 }

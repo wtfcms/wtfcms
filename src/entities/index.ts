@@ -25,7 +25,7 @@ export function entityInclude(params: string[] = []) {
 
 export function entityExclude(params: string[] = []) {
   const all = entityAll.bind(this)();
-  const ret = all.filter(item => !params.includes(item.name));
+  const ret = all.filter((item) => !params.includes(item.name));
 
   return ret;
 }
@@ -36,5 +36,6 @@ export * from './User';
 export * from './AdminUser';
 export * from './AdminGroup';
 export * from './AdminResource';
+export * from './SystemConfig';
 
 export * from './Content';
