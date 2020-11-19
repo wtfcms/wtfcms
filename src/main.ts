@@ -5,14 +5,19 @@ import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { ValidationOptions } from './shared/config';
+import { ValidationOptions } from '@app/shared';
+import { TransformInterceptor } from '@app/shared/interceptors/transform.interceptor';
 const session = require('express-session');
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
+  // 注意 enableCors 与 useStaticAssets 先后顺序
+  app.enableCors();
+  app.useStaticAssets(path.join(__dirname, '..', 'public'), {
+    prefix: '/static/',
+  });
   // see https://github.com/nestjs/nest/issues/2157
-  app.useStaticAssets(path.join(__dirname, '..', 'public'));
   app.setBaseViewsDir('views');
   app.setViewEngine('njk');
   nunjucks.configure('src/views', {
@@ -37,7 +42,8 @@ async function bootstrap() {
   SwaggerModule.setup('apiapi', app, document);
 
   app.useGlobalPipes(new ValidationPipe(ValidationOptions));
-  app.enableCors();
+  app.useGlobalInterceptors(new TransformInterceptor());
+
   await app.listen(4000);
 }
 bootstrap();

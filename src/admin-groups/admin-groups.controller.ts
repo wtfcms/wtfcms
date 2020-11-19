@@ -30,7 +30,7 @@ export class AdminGroupsController {
 
   // @UseGuards(AuthGuard('jwt'))
   @Post()
-  async create(@Body() body: CreateAdminGroupDto) {
+  async create(@Body() body) {
     return await this.adminGroupsService.create(body);
   }
 

@@ -39,3 +39,7 @@ export * from './AdminResource';
 export * from './SystemConfig';
 
 export * from './Content';
+export * from './Message';
+export * from './ContentTag';
+export * from './ContentCategory';
+export * from './ContentTemplate';

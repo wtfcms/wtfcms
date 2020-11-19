@@ -10,6 +10,10 @@ import { AdminUsersModule } from './admin-users/admin-users.module';
 import { AdminGroupsModule } from './admin-groups/admin-groups.module';
 import { ControllersModule } from './controllers/controllers.module';
 import { AdminResourcesModule } from './admin-resources/admin-resources.module';
+import { ContentTagsModule } from './content-tags/content-tags.module';
+import { ContentCategoriesModule } from './content-categories/content-categories.module';
+import { ContentsModule } from './contents/contents.module';
+import { UploadsModule } from './uploads/uploads.module';
 
 @Module({
   imports: [
@@ -28,6 +32,10 @@ import { AdminResourcesModule } from './admin-resources/admin-resources.module';
     AdminGroupsModule,
     ControllersModule,
     AdminResourcesModule,
+    ContentTagsModule,
+    ContentCategoriesModule,
+    ContentsModule,
+    UploadsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

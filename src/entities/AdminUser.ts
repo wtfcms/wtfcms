@@ -9,7 +9,7 @@ import {
   ManyToOne,
 } from '@mikro-orm/core';
 
-import { BaseEntity, AdminGroup } from './';
+import { BaseEntity, AdminGroup, User } from './';
 
 @Entity()
 export class AdminUser extends BaseEntity {
@@ -49,7 +49,9 @@ export class AdminUser extends BaseEntity {
   @Property()
   enable: boolean = true;
 
-  // @Property()
   @ManyToOne(() => AdminGroup)
   group: AdminGroup;
+
+  @OneToOne()
+  targetEditor: User;
 }

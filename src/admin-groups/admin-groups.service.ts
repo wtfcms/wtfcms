@@ -13,7 +13,7 @@ export class AdminGroupsService {
   ) {}
 
   async findAll(): Promise<AdminGroup[]> {
-    return await this.adminGroupRepository.findAll();
+    return await this.adminGroupRepository.findAll(['power', 'adminUser']);
   }
 
   async create(params): Promise<AdminGroup> {

@@ -41,9 +41,9 @@ export class AdminUsersController {
      * 1、使用username查询adminUser表是否已存在同名账号
      * 不存在则创建新的，存在则抛出错误
      */
-    const { userName } = body;
+    const { username } = body;
     const adminUser = await this.adminUserRepository.findOne({
-      username: userName,
+      username
     });
     if (adminUser) {
       throw new BadRequestException('该用户已存在');
